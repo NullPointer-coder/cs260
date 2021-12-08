@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;AbstractCard.java&apos; to &apos;Homework#2/src/edu.truman.cs260.jw6347.lab2&apos;&#x0D;&#x0A;- Original project: &apos;Lab Homework #0&apos;&#x0D;&#x0A;- Destination element: &apos;Homework#2/src/edu.truman.cs260.jw6347.lab2&apos;&#x0D;&#x0A;- Original element: &apos;AbstractCard.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move file" destination="=Homework\#2/src&lt;edu.truman.cs260.jw6347.lab2" element1="AbstractCard.java" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1635131440606" units="0" version="1.0"/>
+</session>

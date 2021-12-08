@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="edu.truman.cs260.jw6347.lab1.Board"/>
+    <fullyQualifiedTypeName name="edu.truman.cs260.jw6347.lab1.HumanFirst"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="edu.truman.cs260.jw6347.lab2.Card"/>
+    <fullyQualifiedTypeName name="sun.jvm.hotspot.debugger.posix.elf.ELFSectionHeader"/>
+    <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.ARETURN"/>
+    <fullyQualifiedTypeName name="sun.jvm.hotspot.oops.ObjectHistogram"/>
+    <fullyQualifiedTypeName name="java.util.LinkedList"/>
+    <fullyQualifiedTypeName name="com.sun.tools.javac.util.List"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="com.sun.java_cup.internal.runtime.Scanner"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="edu.truman.cs260.jw6347.lab4.Frequency"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="edu.truman.cs260.jw6347.lab4.Dictionary"/>
+    <fullyQualifiedTypeName name="edu.truman.cs260.jw6347.lab4.readD"/>
+    <fullyQualifiedTypeName name="org.junit.Test"/>
+    <fullyQualifiedTypeName name="javax.sound.midi.Synthesizer"/>
+    <fullyQualifiedTypeName name="sun.rmi.log.LogInputStream"/>
+    <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+    <fullyQualifiedTypeName name="sun.jvm.hotspot.interpreter.BytecodeWithCPIndex"/>
+</qualifiedTypeNameHistroy>

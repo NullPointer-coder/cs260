@@ -1,0 +1,16 @@
+public int getRank()
+{ // Purpose: Get the current card¡¯s rank as an integer
+ // Output: the rank of the card 
+ // joker -> 1, 2 -> 2, 3 -> 3, ..., 10 -> 10
+ // jack -> 11, queen -> 12, king -> 13, ace -> 14
+}
+public String getRankString()
+{ // Purpose: Get the current card¡¯s rank as a string
+ // Returns the cards¡¯s rank as one of the strings in Card.RANKS
+ // (whichever corresponds to the card)
+}
+public String getSuit()
+{ // Purpose: Get the current card¡¯s suit
+ // Returns the card¡¯s suit as one of the strings in Card.SUITS
+ // (whichever corresponds to the card)
+} 

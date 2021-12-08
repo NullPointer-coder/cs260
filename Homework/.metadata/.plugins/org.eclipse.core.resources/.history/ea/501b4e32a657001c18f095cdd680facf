@@ -1,0 +1,241 @@
+package edu.truman.cs260.jw6347.lab5Q1;
+
+public class Board
+{
+    final int LENGTH = 9;
+    final int HUMAN = -1;
+    final int HUMANSUM = -3;
+    final int COMPUTER = 1;
+    final int COMPUTERSUM = 3;
+    final int NULL = 0;
+
+    public int gameBoard[] = new int[LENGTH];
+
+    /**
+     * constructor for clear gameBoard  
+     */
+    public Board()
+    {
+        clearBoard();
+    }
+
+    /**
+     * clear board to 0
+     */
+    public void clearBoard()
+    {
+        for (int i = 0; i < LENGTH; i++)
+        {
+           gameBoard[i] = 0;
+        }
+    }
+    
+   
+    /**
+     * To get player's chosen position and store into game board.
+     * @param position the player's chosen position
+     * @return to store into game board
+     */
+    public int getPostion(int[] position)
+    {
+        return gameBoard[position[0]];
+    }
+    
+    /**
+     * To store which player's chosen position and store into game board.
+     * @param position the player's chosen position
+     * @param whoseTurn which player's turn to put
+     */
+    public void setPostion(int[] position)
+    {
+        if(whoseTurn == 0)
+        {
+            whoseTurn--;
+        }
+        if(whoseTurn == HUMAN)
+        {
+            gameBoard[position[0]][position[1]] = HUMAN;
+        }
+        if(whoseTurn == COMPUTER)
+        {
+            gameBoard[position[0]][position[1]] = COMPUTER;
+        }
+    }
+    
+    /**
+     *  To check which player could win for each row 
+     */
+    public int CheckRow()
+    {
+        for(int row = 0; row < LENGTH; row++)
+        {
+            int sum = 0;
+            for(int col = 0; col <LENGTH; col++)
+            {
+                sum += gameBoard[row][col];
+            }
+            if(sum == HUMANSUM)
+            {
+                return HUMAN;
+            }
+            else if(sum ==COMPUTERSUM)
+            {
+                return COMPUTER;
+            }
+        }
+        return NULL;
+    }
+
+    /**
+     *  To check which player could win for each column 
+     */
+    public int CheckCol()
+    {
+
+        for(int col = 0; col < LENGTH; col++)
+        {
+            int sum = 0;
+            for(int row = 0; row < LENGTH; row++)
+            {
+                sum += gameBoard[row][col];
+            }
+            if(sum == HUMANSUM)
+            {
+                return HUMAN;
+            }
+            else if(sum ==COMPUTERSUM)
+            {
+                return COMPUTER;
+            }
+        }
+        return NULL;
+    }
+
+    /**
+     *  To check which player could win for right to left diagonal 
+     */
+    public int CheckRightToLeftDiagonal()
+    {
+        int sum = 0;
+        int col = LENGTH -1;
+        for(int row = 0; row < LENGTH; row++)
+        {
+            sum += gameBoard[row][col];
+            col--;
+        }
+        if(sum == HUMANSUM)
+        {
+            return HUMAN;
+        }
+        else if(sum ==COMPUTERSUM)
+        {
+            return COMPUTER;
+        }
+        return NULL;
+    }
+    
+    /** 
+     * To check which player could win for left to right diagonal 
+     */
+    public int CheckLeftToRightDiagonal()
+    {
+        int sum = 0;
+        int row = 0;
+        for(int col = 0; col < LENGTH; col++)
+        {
+
+            sum += gameBoard[row][col];
+            row++;
+        }
+        if(sum == HUMANSUM)
+        {
+            return HUMAN;
+        }
+        else if(sum ==COMPUTERSUM)
+        {
+            return COMPUTER;
+        }
+
+        return NULL;
+    }
+    
+    /**
+     * To check which player is winner 
+     */
+    public int Winner()
+    {
+        if(CheckRow() == HUMAN)
+        { return HUMAN; }
+        if(CheckCol() == HUMAN)
+        { return HUMAN; }
+        if(CheckRightToLeftDiagonal() == HUMAN)
+        { return HUMAN; }
+        if(CheckLeftToRightDiagonal() == HUMAN)
+        { return HUMAN; }
+
+        if(CheckRow() == COMPUTER)
+        { return COMPUTER; }
+        if(CheckCol() == COMPUTER)
+        { return COMPUTER; }
+        if(CheckRightToLeftDiagonal() == COMPUTER)
+        { return COMPUTER; }
+        if(CheckLeftToRightDiagonal() == COMPUTER)
+        { return COMPUTER; }
+
+        return NULL;
+    }
+    
+    /**
+     * To check the game board is full by two players or not 
+     * @return the game board is full or not
+     */
+    public boolean isFull()
+    {
+        for(int row=0; row < LENGTH; row++)
+        {
+            for(int col=0; col < LENGTH; col++)
+            {
+                if(gameBoard[row][col] == NULL)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    /**
+     * To Check have the winner or not
+     * @return have the winner or not
+     */
+    public boolean hasWinner()
+    {
+        if(Winner() == HUMAN || Winner() == COMPUTER)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * To show which one is winner or the game is stalemate 
+     */
+    public void displayWinner()
+    {
+        if(Winner() == HUMAN)
+        { 
+        	System.out.println(); 
+        	System.out.println("Congratulations! You are the winner!"); 
+        }
+        else if(Winner() == COMPUTER)
+        { 
+        	System.out.println();
+        	System.out.println("Sorry! You lost! Computer is the winner!"); 
+        }
+        else
+        { 
+        	System.out.println();
+        	System.out.println("Game is stalemate! No winner!"); 
+        }
+    }
+}
