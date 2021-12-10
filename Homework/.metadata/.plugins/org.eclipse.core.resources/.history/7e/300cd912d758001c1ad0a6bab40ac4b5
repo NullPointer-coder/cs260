@@ -1,0 +1,107 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Guiprogram implements ActionListener
+{
+	final int SIZE = 4;
+	JButton boardButtons[]= new JButton[SIZE];
+	JFrame f = new JFrame(); // main window object
+	// constructor
+	public Guiprogram(String title) 
+	{
+
+		// creating a JFrame window with the title
+		f = new JFrame(title);
+		
+		JButton b1 = new JButton("New Playing");
+		b1.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		b1.addActionListener(this);
+		
+		JButton b2 = new JButton("Media Guide");
+		b2.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		b2.addActionListener(this);
+		
+		JButton b3 = new JButton("Library");
+		b3.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		b3.addActionListener(this);
+		
+		JButton b4 = new JButton("Help & Info");
+		b4.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		b4.addActionListener(this);
+		
+		// The JPanel holds the buttons
+		JPanel upperLayerPanel = new JPanel();
+		upperLayerPanel.setLayout(new GridLayout(2, 2));
+		// creating memory for the buttons
+		for(int i=0;i<SIZE;i++)
+		{
+			boardButtons[i] = new JButton();
+			boardButtons[i].setText(Integer.toString(i+1));
+			boardButtons[i].setFont(new Font("SansSerif", Font.PLAIN, 20));
+			boardButtons[i].addActionListener(this);
+			
+			// adding the button to the Panel
+			upperLayerPanel.add(boardButtons[i]);
+		}
+			
+		JButton b5 = new JButton("Ok");
+		b5.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		b5.addActionListener(this);
+		
+		// Panel holding buttons at the west side
+		JPanel westCenterPanel = new JPanel();
+		westCenterPanel.setLayout(new GridLayout(2, 1));
+		
+		westCenterPanel.add(b2, BorderLayout.NORTH);
+		westCenterPanel.add(b3, BorderLayout.SOUTH);
+		
+		JPanel westPanel = new JPanel();
+		westPanel.setLayout(new GridLayout(3, 1));
+		westPanel.add(b1, BorderLayout.NORTH);
+		westPanel.add(westCenterPanel, BorderLayout.NORTH);
+		westPanel.add(b4, BorderLayout.SOUTH);
+		
+		
+		// Panel holding buttons at the east side
+		JPanel eastPanel = new JPanel();
+		eastPanel.setLayout(new GridLayout(2, 1));
+		
+		eastPanel.add(upperLayerPanel, BorderLayout.NORTH);
+		eastPanel.add(b5, BorderLayout.SOUTH);
+		
+		// Panel holding buttons at the center side
+		JPanel northPanel = new JPanel();
+		northPanel.setLayout(new GridLayout(1, 3));
+		northPanel.add(westPanel, BorderLayout. WEST);
+
+		northPanel.add(eastPanel, BorderLayout. EAST);
+		
+		JLabel gameStatusLabel= new JLabel(" Movies Music Videos DVD Web Pages ");
+		gameStatusLabel.setPreferredSize(new Dimension(100, 40));
+		
+		// adding buttons to the frame
+		// setting grid layout of 3 rows and 3 columns
+		f.setLayout(new BorderLayout());
+		f.add(northPanel, BorderLayout. CENTER);
+		f.add(gameStatusLabel, BorderLayout. SOUTH);
+		
+		f.setSize(640, 540);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	
+	public void actionPerformed(ActionEvent event) 
+	{
+
+	}
+	
+	// main driver program
+	public static void main(String[] args) 
+	{
+		// create an object of the TikTakToe class
+		@SuppressWarnings("unused")
+		Guiprogram gameWindow = new Guiprogram("Movie on Thursday");
+    }
+}

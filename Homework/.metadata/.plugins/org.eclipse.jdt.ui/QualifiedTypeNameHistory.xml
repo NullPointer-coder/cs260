@@ -24,4 +24,5 @@
     <fullyQualifiedTypeName name="sun.rmi.log.LogInputStream"/>
     <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
     <fullyQualifiedTypeName name="sun.jvm.hotspot.interpreter.BytecodeWithCPIndex"/>
+    <fullyQualifiedTypeName name="java.util.Stack"/>
 </qualifiedTypeNameHistroy>

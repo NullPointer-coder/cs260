@@ -52,6 +52,7 @@ public class Frequency
 	  str = str.replaceAll("\\p{Punct}", "");
 	  return str;
 	}
+	  
 	
 	/**
 	 * print the result of the words and their frequencies

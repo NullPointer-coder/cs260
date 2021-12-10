@@ -8,7 +8,7 @@ public class CompPlayer extends Player
     private final int ATTACK = 2;
     private final int FALSE = -1;
     
-    
+    public int [] spaciaPposition = {0, 2, 6, 8};
     
     // The range of random number   
     private final int RANDOMRANGE = 9;   
@@ -43,12 +43,19 @@ public class CompPlayer extends Player
 	        {
 	        	setPlayerPosition(4);	       
 	        }
+	        
+	        if(tempBoard.gameBoard[4] == -1 &&(tempBoard.gameBoard[0]==0 || 
+	 	           tempBoard.gameBoard[2]==0 || tempBoard.gameBoard[6]==0 ||tempBoard.gameBoard[8]==0))
+	        {
+	        	Random generator = new Random();
+		        int random = generator.nextInt(3);
+	        	setPlayerPosition(spaciaPposition[random]);	       
+	        }
         	
             if((isDefendOrAttack(tempBoard, ATTACK)) || (isDefendOrAttack(tempBoard, DEFEND)))
             {
         	   inputComPosition(tempBoard);
        	    }
-            
         	super.inputPosition();
         }while(!checkInputPosition(position, tempBoard));
         super.inputPosition();
@@ -108,7 +115,7 @@ public class CompPlayer extends Player
         }
         if (sum == motion)
         {
-        	for (int i = 6; i <LENGTH / 3; i++)
+        	for (int i = 6; i <LENGTH; i++)
             {
                 if(tempBoard.gameBoard[i] == 0)
                 {

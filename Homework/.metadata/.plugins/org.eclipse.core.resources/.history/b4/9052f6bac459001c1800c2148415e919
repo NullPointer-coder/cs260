@@ -1,0 +1,204 @@
+/*
+ * Jingbo Wang
+ */
+
+import java.io.*;
+import java.util.*;
+
+public class BasicMaze 
+{
+	int mazeRow;
+	int mazeCol;
+    final int SIZE = 2; 
+	char mazeGame[][] = new char[mazeRow][mazeCol];
+	int importantAdress[] = new int[SIZE];
+	static Stack <int[]> markedAdrees = new Stack<>();
+	// constructor
+	public BasicMaze(String fileName) throws FileNotFoundException
+	{
+		toArray(fileName);
+		
+	}
+	
+	// next stap could go north or not
+	public boolean goNorthTest(int[] currentAdress)
+	{
+		int row = currentAdress[0];
+		int col = currentAdress[1];
+		row -= 1;
+		
+		if(mazeGame[row][col] != '#')
+		{
+		  return true;	
+		}
+		return false;
+	}
+	
+	// next stap could go east or not
+	public boolean goEastTest(int[] currentAdress)
+	{
+		int row = currentAdress[0];
+		int col = currentAdress[1];
+		col += 1;
+		
+		if(mazeGame[row][col] != '#')
+		{
+		  return true;	
+		}
+		return false;
+	}
+	
+	// next stap could go south or not
+	public boolean goSouthTest(int[] currentAdress)
+	{
+		int row = currentAdress[0];
+		int col = currentAdress[1];
+		row += 1;
+		
+		if(mazeGame[row][col] != '#')
+		{
+		  return true;	
+		}
+		return false;
+	}
+	
+	// next stap could go west or not
+	public boolean goWestTest(int[] currentAdress)
+	{
+		int row = currentAdress[0];
+		int col = currentAdress[1];
+		col -= 1;
+		
+		if(mazeGame[row][col] != '#')
+		{
+		  return true;	
+		}
+		return false;
+	}
+    
+	// go north
+	public int[] goNorth(int[] currentAdress)
+	{
+		if(!goEastTest(currentAdress)  && !goWestTest(currentAdress) && goNorthTest(currentAdress))
+		{
+			currentAdress[0] -= 1;
+			return goNorth(currentAdress);
+		}
+		return currentAdress;
+	}
+	
+	// go east
+	public int[] goEast(int[] currentAdress)
+	{
+		if(!goNorthTest(currentAdress)  && !goSouthTest(currentAdress) && goEastTest(currentAdress))
+		{
+			currentAdress[1] += 1;
+			return goNorth(currentAdress);
+		}
+		return currentAdress;
+	}
+	
+	// go south
+	public int[] goSouth(int[] currentAdress)
+	{
+		if(!goEastTest(currentAdress)  && !goWestTest(currentAdress) && goSouthTest(currentAdress))
+		{
+			currentAdress[0] += 1;
+			return goNorth(currentAdress);
+		}
+		return currentAdress;
+	}
+	
+	
+	// go wast
+	public int[] gowast(int[] currentAdress)
+	{
+		if(!goNorthTest(currentAdress)  && !goSouthTest(currentAdress) && goWestTest(currentAdress))
+		{
+			currentAdress[3] -= 1;
+			return goNorth(currentAdress);
+		}
+		return currentAdress;
+	}
+	
+	public static void markedAdreesPush(int[] importantAdress)
+    {
+		markedAdrees.push(importantAdress);
+    }
+	
+	public void PlayMaze() 
+	{
+		foundStartedAdress();
+		markedAdreesPush(importantAdress);
+		
+		
+	}
+	
+	/**
+	 * read "maze.txt" file and store it into mazeGame array
+	 * @throws FileNotFoundException
+	 */
+	public void toArray(String fileName) throws FileNotFoundException
+    {
+		File inFile = new File(fileName);
+		 Scanner in = new Scanner(inFile);
+		 ReadFile(in);
+		 in.close();
+    }
+	
+	// found start adress of the maze game 
+	public void foundStartedAdress()
+	{
+		for(int row = 0; row < mazeRow; row++)
+		{
+			for(int col = 0; col < mazeCol; col++)
+			{
+				if(mazeGame[row][col] == '^')
+				{
+					importantAdress[0] =row;
+					importantAdress[1] =col;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * clean up the format of the words
+	 * and put one string and its frequency in to map
+	 * @param in initialize the Scanner format
+	 */
+	public void ReadFile(Scanner in)
+	{
+		int row = 0;
+		String str = null;
+		while(in.hasNext())
+	    {
+            str = in.nextLine();
+			mazeCol = str.length(); 
+
+			for(int col = 0; col < mazeCol; col++)
+			{
+				mazeGame[row][col] = str.charAt(col);
+			}
+			row++;
+
+	    }
+
+		mazeRow = row;
+		
+//		for(row = 0; row < mazeRow; row++)
+//		{
+//			for(int col = 0; col < mazeCol; col++)
+//			{
+//				System.out.print(mazeGame[row][col]);
+//			}
+//			System.out.println();
+//		}
+	}
+	
+	public static void main(String[] args) throws FileNotFoundException 
+	{
+		@SuppressWarnings("unused")
+		BasicMaze basicMaze = new BasicMaze("maze.txt");
+	}
+}

@@ -130,12 +130,10 @@ public class TicTacToeApp implements ActionListener
 			// determine which cell button triggered the action event
 			for(int i=0;i<SIZE;i++)
 			{
-				if(event.getSource().equals(boardButtons[i])){ // button found
-					
+				if(event.getSource().equals(boardButtons[i])){ // button found	
 					// if the cell has already been selected then do not do anything
 					if(boardButtons[i].getText().equals("H") == false && boardButtons[i].getText().equals("C") == false) 
 					{
-						
 						if(tempBoard.hasWinner())
 						{ 
 							if(tempBoard.Winner() == HUMAN)
@@ -147,8 +145,7 @@ public class TicTacToeApp implements ActionListener
 					        { 
 								gameStatusLabel.setText("    Sorry! You lost! Computer is the winner! Restart the game to continue ...");
 								gWindow.setTitle("TicTacToe [Game Over!]");
-					        }
-					        
+					        } 
 						}
 						else if(gameMoveCount == SIZE)
 						{

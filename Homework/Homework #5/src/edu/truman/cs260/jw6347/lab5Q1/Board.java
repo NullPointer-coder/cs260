@@ -30,7 +30,6 @@ public class Board
         }
     }
     
-   
     /**
      * To get player's chosen position and store into game board.
      * @param position the player's chosen position
@@ -279,13 +278,5 @@ public class Board
             return true;
         }
         return false;
-    }
-    
-    /**
-     * To show which one is winner or the game is stalemate 
-     */
-    public void displayWinner()
-    {
-        
     }
 }
