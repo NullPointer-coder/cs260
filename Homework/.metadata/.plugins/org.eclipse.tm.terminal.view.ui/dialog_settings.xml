@@ -4,6 +4,8 @@
 		<section name="SettingsPanelControl">
 			<section name="--distribution, -d [参数] (WSL)">
 			</section>
+			<section name="--distribution, -d [����] (WSL)">
+			</section>
 		</section>
 	</section>
 </section>

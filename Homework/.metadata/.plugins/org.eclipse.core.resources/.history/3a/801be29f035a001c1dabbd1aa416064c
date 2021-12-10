@@ -193,43 +193,38 @@ public class BasicMaze
 	public void findoutRoad(int[] currentAdress)
 	{
 		int[] temp =new int[2];
-
-		if(goWestTest(currentAdress) || goSouthTest(currentAdress) 
-				|| goEastTest(currentAdress) || goNorthTest(currentAdress))
+		while()
 		{
-			if(goWestTest(currentAdress))
+			if(goNorthTest(currentAdress))
 			{
-				temp[0] =currentAdress[0];
-				temp[1] =currentAdress[1] - 1;
-				markedDirection.push(temp);
-			}
-			if(goSouthTest(currentAdress) )
-			{
-				temp[0] = currentAdress[0] + 1;
+				temp[0] = currentAdress[0] - 1;
 				temp[1] = currentAdress[1];
 				markedDirection.push(temp);
-				goSouth(temp);
+				goNorth(temp);
 			}
 			if(goEastTest(currentAdress))
 			{
 				temp[0] = currentAdress[0];
 				temp[1] = currentAdress[1] + 1;
 				markedDirection.push(temp);
+				goEast(temp);
 			}
-			if(goNorthTest(currentAdress))
+			if(goSouthTest(currentAdress))
 			{
-				temp[0] = currentAdress[0] - 1;
+				temp[0] = currentAdress[0] + 1;
 				temp[1] = currentAdress[1];
 				markedDirection.push(temp);
+				goSouth(temp);
 			}
+			if(goWestTest(currentAdress))
+			{
+				temp[0] =currentAdress[0];
+				temp[1] =currentAdress[1] - 1;
+				markedDirection.push(temp);
+				goWest(temp);
+			}
+			
 		}
-		
-		System.out.println(markedDirection.pop());
-		//System.out.println(markedDirection.pop());
-//		while(!markedDirection.empty())
-//		{
-//			
-//		}
 //		boolean done = false;
 //		while(!done) 
 //		{

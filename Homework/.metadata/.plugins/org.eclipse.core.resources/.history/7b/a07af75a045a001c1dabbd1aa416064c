@@ -223,7 +223,6 @@ public class BasicMaze
 				markedDirection.push(temp);
 			}
 		}
-		
 		System.out.println(markedDirection.pop());
 		//System.out.println(markedDirection.pop());
 //		while(!markedDirection.empty())

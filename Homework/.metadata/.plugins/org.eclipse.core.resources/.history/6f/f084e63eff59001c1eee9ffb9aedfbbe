@@ -193,43 +193,35 @@ public class BasicMaze
 	public void findoutRoad(int[] currentAdress)
 	{
 		int[] temp =new int[2];
-
-		if(goWestTest(currentAdress) || goSouthTest(currentAdress) 
-				|| goEastTest(currentAdress) || goNorthTest(currentAdress))
+		if(goWestTest(currentAdress))
 		{
-			if(goWestTest(currentAdress))
-			{
-				temp[0] =currentAdress[0];
-				temp[1] =currentAdress[1] - 1;
-				markedDirection.push(temp);
-			}
-			if(goSouthTest(currentAdress) )
-			{
-				temp[0] = currentAdress[0] + 1;
-				temp[1] = currentAdress[1];
-				markedDirection.push(temp);
-				goSouth(temp);
-			}
-			if(goEastTest(currentAdress))
-			{
-				temp[0] = currentAdress[0];
-				temp[1] = currentAdress[1] + 1;
-				markedDirection.push(temp);
-			}
-			if(goNorthTest(currentAdress))
-			{
-				temp[0] = currentAdress[0] - 1;
-				temp[1] = currentAdress[1];
-				markedDirection.push(temp);
-			}
+			temp[0] =currentAdress[0];
+			temp[1] =currentAdress[1] - 1;
+			markedDirection.push(temp);
+			goWest(temp);
+		}
+		if(goSouthTest(currentAdress))
+		{
+			temp[0] = currentAdress[0] + 1;
+			temp[1] = currentAdress[1];
+			markedDirection.push(temp);
+			goSouth(temp);
+		}
+		if(goEastTest(currentAdress))
+		{
+			temp[0] = currentAdress[0];
+			temp[1] = currentAdress[1] + 1;
+			markedDirection.push(temp);
+			goEast(temp);
+		}
+		if(goNorthTest(currentAdress))
+		{
+			temp[0] = currentAdress[0] - 1;
+			temp[1] = currentAdress[1];
+			markedDirection.push(temp);
+			goNorth(temp);
 		}
 		
-		System.out.println(markedDirection.pop());
-		//System.out.println(markedDirection.pop());
-//		while(!markedDirection.empty())
-//		{
-//			
-//		}
 //		boolean done = false;
 //		while(!done) 
 //		{
@@ -320,8 +312,8 @@ public class BasicMaze
 	  }
 	}
 	// found exit adress of the maze game 
-	public void foundExitedAdress()
-	{
+		public void foundExitedAdress()
+		{
 			int row = 0;
 			int col = 0;
 			boolean result = false;
@@ -371,7 +363,8 @@ public class BasicMaze
 					exitedAdrees[1] =col;
 				}
 			}
-	}
+		}
+	
 	
 	/**
 	 * initialize the size of maze game
@@ -390,6 +383,7 @@ public class BasicMaze
 		mazeCol = str.length();
 		mazeRow = row;
 		mazeGame = mazeGameArray(mazeGame);
+		
 	}
 	
 	// to store the maze in the board
