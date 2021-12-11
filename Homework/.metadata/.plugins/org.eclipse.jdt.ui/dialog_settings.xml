@@ -52,6 +52,9 @@
 		<item key="JarManifestWizardPage.MANIFEST_LOCATION" value=""/>
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="/Users/wangjingbo/Developer/打包/BounsQ2/MazeLoop.jar"/>
+			<item value="/Users/wangjingbo/Developer/打包/BounsQ2/MazeMaze.jar"/>
+			<item value="/Users/wangjingbo/Developer/打包/BounsQ1/BasicMaze.jar"/>
 			<item value="F:\Truman State University\大三上\CS 260\ECLIPSE Java\打包文件\Homework #5\GuiprogramWang.jar"/>
 			<item value="F:\Truman State University\大三上\CS 260\ECLIPSE Java\打包文件\Homework #5\TicTacTeoAppWang.jar"/>
 			<item value="G:\Truman State University\大三上\CS 260\ECLIPSE Java\打包文件\Homework #5Q1\TicTacTeoAppWang.jar"/>
