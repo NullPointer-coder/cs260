@@ -35,12 +35,12 @@ public class BasicMaze
 		int row = currentAdress[0];
 		int col = currentAdress[1];
 		row -= 1;
-		
-		if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^'
-				&& row > -1 && row<mazeRow
-				&& col> -1 && col<mazeRow)
+		if(row > -1 && row<mazeRow && col> -1 && col<mazeRow)
 		{
-			return true;
+			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+			{
+				return true;
+			}
 		}
 		return false;
 	}
@@ -52,11 +52,12 @@ public class BasicMaze
 		int col = currentAdress[1];
 		col += 1;
 		
-		if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^'
-				&& row > -1 && row<mazeRow
-				&& col> -1 && col<mazeRow)
+		if(row > -1 && row<mazeRow&& col> -1 && col<mazeRow)
 		{
-		  return true;	
+			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+			{
+			  return true;	
+			}
 		}
 		return false;
 	}
@@ -67,12 +68,12 @@ public class BasicMaze
 		int row = currentAdress[0];
 		int col = currentAdress[1];
 		row += 1;
-		
-		if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^'
-				&& row > -1 && row<mazeRow
-				&& col> -1 && col<mazeRow)
+		if(row > -1 && row<mazeRow && col> -1 && col<mazeRow)
 		{
-			return true;	
+			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+			{
+				return true;	
+			}
 		}
 		return false;
 	}
@@ -84,12 +85,13 @@ public class BasicMaze
 		int col = currentAdress[1];
 		col -= 1;
 		
-		if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^'
-				&& row > -1 && row<mazeRow
-				&& col> -1 && col<mazeRow)
-		{
-			return true;	
-		}
+        if(row > -1 && row<mazeRow && col> -1 && col<mazeRow)
+        {
+        	if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+    		{
+    			return true;	
+    		}
+        }
 		return false;
 	}
     
@@ -148,18 +150,21 @@ public class BasicMaze
 			}
 		}
 		boolean done = false;
-		while(!markedDirection.empty() || !done )
+		while(!markedDirection.empty() && !done)
 		{
 			markedDirectionPop(temp);
 			pirntOutAdress(temp);
-			done =gameOver(temp);
+			if(mazeGame[temp[0]][temp[1]]== mazeGame[exitedAdrees[0]][exitedAdrees[1]])
+			{
+				done = true;
+			}
 		    mazeGame[temp[0]][temp[1]] ='#';
 		    
 			int [] tempDirection  = new int[2];
-			if((goWestTest(temp) || goEastTest(temp) || goNorthTest(temp) 
-						|| goSouthTest(temp)) && temp[0]-1 > -1 && temp[0]+1<mazeRow
-						&& temp[1] -1> -1 && temp[1]+1<mazeRow)
+			if((goWestTest(temp) || goEastTest(temp) || goNorthTest(temp) || goSouthTest(temp)) && temp[0]-1 > -1 )
 			{
+				if(mazeGame[temp[0]][temp[1]] != mazeGame[exitedAdrees[0]][exitedAdrees[1]])
+				{
 						if(goWestTest(temp))
 						{
 							//System.out.println("goWest");
@@ -189,18 +194,14 @@ public class BasicMaze
 							markedDirectionPush(tempDirection);
 						}
 				}
+				else
+				{
+					done = true;
+				}
+			}
 		}
 	}
 	
-	boolean gameOver (int[] temp)
-	{
-		if (mazeGame[temp[0]][temp[1]] 
-				== mazeGame[exitedAdrees[0]][exitedAdrees[1]])
-		{
-			return true;
-		}
-		return false;
-	}
 
 	public boolean isAlphabetic(int[] temp)
 	{
@@ -224,15 +225,12 @@ public class BasicMaze
 		foundExitedAdress();
 		if(isAlphabetic(exitedAdrees))
 		{
-			System.out.print(mazeGame[startAdress[0]][startAdress[1]]);
 			findoutRoad(startAdress);
 		}
 		else
 		{
 			System.out.println("Could not get out from the maze");
 		}
-		
-		
 	}
 	
 	/**

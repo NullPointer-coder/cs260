@@ -34,12 +34,12 @@ public class MazeLoop {
 			int row = currentAdress[0];
 			int col = currentAdress[1];
 			row -= 1;
-			
-			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^'
-					&& row > -1 && row<mazeRow
-					&& col> -1 && col<mazeRow)
+			if(row > -1 && row<mazeRow && col> -1 && col<mazeRow)
 			{
-				return true;
+				if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+				{
+					return true;
+				}
 			}
 			return false;
 		}
@@ -51,11 +51,12 @@ public class MazeLoop {
 			int col = currentAdress[1];
 			col += 1;
 			
-			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^'
-					&& row > -1 && row<mazeRow
-					&& col> -1 && col<mazeRow)
+			if(row > -1 && row<mazeRow&& col> -1 && col<mazeRow)
 			{
-			  return true;	
+				if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+				{
+				  return true;	
+				}
 			}
 			return false;
 		}
@@ -66,12 +67,12 @@ public class MazeLoop {
 			int row = currentAdress[0];
 			int col = currentAdress[1];
 			row += 1;
-			
-			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^'
-					&& row > -1 && row<mazeRow
-					&& col> -1 && col<mazeRow)
+			if(row > -1 && row<mazeRow && col> -1 && col<mazeRow)
 			{
-				return true;	
+				if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+				{
+					return true;	
+				}
 			}
 			return false;
 		}
@@ -83,12 +84,13 @@ public class MazeLoop {
 			int col = currentAdress[1];
 			col -= 1;
 			
-			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^'
-					&& row > -1 && row<mazeRow
-					&& col> -1 && col<mazeRow)
-			{
-				return true;	
-			}
+	        if(row > -1 && row<mazeRow && col> -1 && col<mazeRow)
+	        {
+	        	if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+	    		{
+	    			return true;	
+	    		}
+	        }
 			return false;
 		}
 	    

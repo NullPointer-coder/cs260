@@ -5,23 +5,19 @@
 import java.io.*;
 import java.util.*;
 
-public class BasicMaze
+public class MazeLoop
 {
 	final int SIZE = 2; 
-	final int WEST = 1;
-	final int SOUTH = 2;
-	final int EAST = 3;
-	final int NORTH = 4;
-	int direction;
 	int mazeRow;
 	int mazeCol;
-    
+
 	char mazeGame[][];
 	int exitedAdrees[] = new int[SIZE];
-	int importantAdress[] = new int[SIZE];
-	static Stack <int[]> markedDirection = new Stack<>();
+	int startAdress[] = new int[SIZE];
+	static Stack <Integer> markedDirection = new Stack<>();
+	
 	// constructor
-	public BasicMaze(String fileName) throws FileNotFoundException
+	public MazeLoop(String fileName) throws FileNotFoundException
 	{
 		toArray(fileName);
 		PlayMaze();
@@ -39,11 +35,12 @@ public class BasicMaze
 		int row = currentAdress[0];
 		int col = currentAdress[1];
 		row -= 1;
-		
-		if(mazeGame[row][col] != '#')
+		if(row > -1 && row<mazeRow && col> -1 && col<mazeRow)
 		{
-			direction = NORTH;
-			return true;
+			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+			{
+				return true;
+			}
 		}
 		return false;
 	}
@@ -55,10 +52,12 @@ public class BasicMaze
 		int col = currentAdress[1];
 		col += 1;
 		
-		if(mazeGame[row][col] != '#')
+		if(row > -1 && row<mazeRow&& col> -1 && col<mazeRow)
 		{
-		  direction = EAST;
-		  return true;	
+			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+			{
+			  return true;	
+			}
 		}
 		return false;
 	}
@@ -69,11 +68,12 @@ public class BasicMaze
 		int row = currentAdress[0];
 		int col = currentAdress[1];
 		row += 1;
-		
-		if(mazeGame[row][col] != '#')
+		if(row > -1 && row<mazeRow && col> -1 && col<mazeRow)
 		{
-			direction = SOUTH;
-			return true;	
+			if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+			{
+				return true;	
+			}
 		}
 		return false;
 	}
@@ -85,160 +85,148 @@ public class BasicMaze
 		int col = currentAdress[1];
 		col -= 1;
 		
-		if(mazeGame[row][col] != '#')
-		{
-			direction = WEST;
-			return true;	
-		}
+        if(row > -1 && row<mazeRow && col> -1 && col<mazeRow)
+        {
+        	if(mazeGame[row][col] != '#' && mazeGame[row][col] != '^')
+    		{
+    			return true;	
+    		}
+        }
 		return false;
 	}
     
-	// go north
-	public int[] goNorth(int[] currentAdress)
+	// if fistDrection = 0, then it not move
+	public int[] NotMove(int[] currentAdress)
 	{
-		if(!goEastTest(currentAdress)  && !goWestTest(currentAdress) && goNorthTest(currentAdress))
-		{
-			currentAdress[0] -= 1;
-			pirntOutAdress(currentAdress);
-			return goNorth(currentAdress);
-		}
-		if(goWestTest(currentAdress))
-		{
-			currentAdress[1] -= 1;
-			markedDirection.push(currentAdress);
-			return goWest(currentAdress);
-		}
-		if(goEastTest(currentAdress))
-		{
-			currentAdress[1] += 1;
-			markedDirection.push(currentAdress);
-			return goEast(currentAdress);
-		}
-		
+		currentAdress[0]=currentAdress[0];
+		currentAdress[1]=currentAdress[1];
 		return currentAdress;
 	}
+
 	
-	// go east
-	public int[] goEast(int[] currentAdress)
+	public void markedDirectionPush(int[] temp)
 	{
-		if(!goNorthTest(currentAdress)  && !goSouthTest(currentAdress) && goEastTest(currentAdress))
-		{
-			pirntOutAdress(currentAdress);
-			currentAdress[1] += 1;
-			return goEast(currentAdress);
-		}
-		if(goSouthTest(currentAdress))
-		{
-			currentAdress[0] += 1;
-			markedDirection.push(currentAdress);
-			return goSouth(currentAdress);
-		}
-		if(goNorthTest(currentAdress))
-		{
-			currentAdress[0] -= 1;
-			markedDirection.push(currentAdress);
-			return goNorth(currentAdress);
-		}
-		return currentAdress;
+		markedDirection.push(temp[0]);
+		markedDirection.push(temp[1]);
 	}
 	
-	// go south
-	public int[] goSouth(int[] currentAdress)
+	public void markedDirectionPop(int[] temp)
 	{
-		if(!goEastTest(currentAdress)  && !goWestTest(currentAdress) && goSouthTest(currentAdress))
-		{
-			currentAdress[0] += 1;
-			pirntOutAdress(currentAdress);
-			return goSouth(currentAdress);
-		}
-		if(goWestTest(currentAdress))
-		{
-			currentAdress[1] -= 1;
-			markedDirection.push(currentAdress);
-			return goWest(currentAdress);
-		}
-		if(goEastTest(currentAdress))
-		{
-			currentAdress[1] += 1;
-			markedDirection.push(currentAdress);
-			return goEast(currentAdress);
-		}
-		return currentAdress;
-	}
-	
-	
-	// go wast
-	public int[] goWest(int[] currentAdress)
-	{
-		if(!goNorthTest(currentAdress)  && !goSouthTest(currentAdress) && goWestTest(currentAdress))
-		{
-			pirntOutAdress(currentAdress);
-			currentAdress[1] -= 1;
-			return goWest(currentAdress);
-		}
-		if(goSouthTest(currentAdress))
-		{
-			currentAdress[0] += 1;
-			markedDirection.push(currentAdress);
-			return goSouth(currentAdress);
-		}
-		if(goNorthTest(currentAdress))
-		{
-			currentAdress[0] -= 1;
-			markedDirection.push(currentAdress);
-			return goNorth(currentAdress);
-		}
-		return currentAdress;
+		temp[1] = markedDirection.pop();
+		temp[0]=markedDirection.pop();
 	}
 	
 	public void findoutRoad(int[] currentAdress)
 	{
-		boolean done = false;
-		while(!done) 
+		int[] temp =new int[2];
+	    mazeGame[currentAdress[0]][currentAdress[1]] ='#';
+		if(goWestTest(currentAdress) || goSouthTest(currentAdress) 
+				|| goEastTest(currentAdress) || goNorthTest(currentAdress))
 		{
 			if(goWestTest(currentAdress))
 			{
-				goWest(currentAdress);
+				temp[0] =currentAdress[0];
+				temp[1] =currentAdress[1] - 1;
+				markedDirectionPush(temp);
 			}
-			if(goSouthTest(currentAdress))
+			if(goSouthTest(currentAdress) )
 			{
-				goSouth(currentAdress);
+				temp[0] = currentAdress[0] + 1;
+				temp[1] = currentAdress[1];
+				markedDirectionPush(temp);
 			}
 			if(goEastTest(currentAdress))
 			{
-				goEast(currentAdress);
+				temp[0] = currentAdress[0];
+				temp[1] = currentAdress[1] + 1;
+				markedDirectionPush(temp);
+				
 			}
 			if(goNorthTest(currentAdress))
 			{
-				goNorth(currentAdress);
-			}
-			if(mazeGame[currentAdress[0]][currentAdress[1]] 
-					== mazeGame[exitedAdrees[0]][exitedAdrees[1]])
-			{
-				done =true;
-			}
-			else
-			{
-				markedDirection.pop();
+				temp[0] = currentAdress[0] - 1;
+				temp[1] = currentAdress[1];
+				markedDirectionPush(temp);
 			}
 		}
+		boolean done = false;
+		while(!markedDirection.empty() && !done)
+		{
+			markedDirectionPop(temp);
+			pirntOutAdress(temp);
+			if(mazeGame[temp[0]][temp[1]]== mazeGame[exitedAdrees[0]][exitedAdrees[1]])
+			{
+				done = true;
+			}
+		    mazeGame[temp[0]][temp[1]] ='#';
+		    
+			int [] tempDirection  = new int[2];
+			if((goWestTest(temp) || goEastTest(temp) || goNorthTest(temp) || goSouthTest(temp)) && temp[0]-1 > -1 )
+			{
+				if(mazeGame[temp[0]][temp[1]] != mazeGame[exitedAdrees[0]][exitedAdrees[1]])
+				{
+						if(goWestTest(temp))
+						{
+							//System.out.println("goWest");
+							tempDirection[0]=temp[0];
+							tempDirection[1]=temp[1]-1;
+							markedDirectionPush(tempDirection);
+						}
+						if(goSouthTest(temp))
+						{
+							//System.out.println("goSouth");
+							tempDirection[0]=temp[0]+1;
+							tempDirection[1]=temp[1];
+							markedDirectionPush(tempDirection);
+						}
+						if(goEastTest(temp))
+						{
+							//System.out.println("goEast");
+							tempDirection[0]=temp[0];
+							tempDirection[1]=temp[1]+1;
+							markedDirectionPush(tempDirection);
+						}
+						if(goNorthTest(temp))
+						{
+							//System.out.println("goNorth");
+							tempDirection[0]=temp[0]-1;
+							tempDirection[1]=temp[1];
+							markedDirectionPush(tempDirection);
+						}
+				}
+			}
+		}
+	}
+	
+
+	public boolean isAlphabetic(int[] temp)
+	{
+		if(Character.isAlphabetic((mazeGame[temp[0]][temp[1]])))
+		{
+			return true;
+		}
+		return false;
+	}
+	public void pirntOutAdress(int[] currentAdress)
+	{
+	  if(isAlphabetic(currentAdress))
+	  {
+		System.out.print(" " + mazeGame[currentAdress[0]][currentAdress[1]]);
+	  }
 	}
 	
 	public void PlayMaze() 
 	{
 		foundStartedAdress();
 		foundExitedAdress();
-		if(Character.isAlphabetic(mazeGame[exitedAdrees[0]][exitedAdrees[1]]))
+		if(isAlphabetic(exitedAdrees))
 		{
-			System.out.println(mazeGame[importantAdress[0]][importantAdress[1]]);
-			findoutRoad(importantAdress);
+			findoutRoad(startAdress);
 		}
 		else
 		{
 			System.out.println("Could not get out from the maze");
 		}
-		
-		
 	}
 	
 	/**
@@ -266,22 +254,16 @@ public class BasicMaze
 			{
 				if(mazeGame[row][col] == '^')
 				{
-					importantAdress[0] =row;
-					importantAdress[1] =col;
+					startAdress[0] =row;
+					startAdress[1] =col;
 				}
 			}
 		}
 	}
-	public void pirntOutAdress(int[] currentAdress)
-	{
-	  if(Character.isAlphabetic((mazeGame[currentAdress[0]][currentAdress[1]])))
-	  {
-		System.out.print(" " + mazeGame[currentAdress[0]][currentAdress[1]]);
-	  }
-	}
+	
 	// found exit adress of the maze game 
-		public void foundExitedAdress()
-		{
+	public void foundExitedAdress()
+	{
 			int row = 0;
 			int col = 0;
 			boolean result = false;
@@ -331,8 +313,7 @@ public class BasicMaze
 					exitedAdrees[1] =col;
 				}
 			}
-		}
-	
+	}
 	
 	/**
 	 * initialize the size of maze game
@@ -351,7 +332,6 @@ public class BasicMaze
 		mazeCol = str.length();
 		mazeRow = row;
 		mazeGame = mazeGameArray(mazeGame);
-		
 	}
 	
 	// to store the maze in the board
@@ -372,6 +352,6 @@ public class BasicMaze
 	public static void main(String[] args) throws FileNotFoundException 
 	{
 		@SuppressWarnings("unused")
-		BasicMaze basicMaze = new BasicMaze("maze.txt");
+		MazeLoop mazeLoop = new MazeLoop("maze.txt");
 	}
 }
