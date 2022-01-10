@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/Users/jingbowang/Developer/cs260/Homework"/>
 			<item value="G:\Truman State University\大三上\CS 260\ECLIPSE Java\Homework\Homework #2"/>
 			<item value="G:\Truman State University\大三上\CS 260\ECLIPSE Java\Homework #2"/>
 			<item value="G:\Truman State University\大三上\CS 260\ECLIPSE Java\Homework #0"/>
