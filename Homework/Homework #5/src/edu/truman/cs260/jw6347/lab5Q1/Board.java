@@ -12,7 +12,7 @@ public class Board
     public int gameBoard[] = new int[LENGTH];
 
     /**
-     * constructor for clear gameBoard  
+     * constructor for clear gameBoard
      */
     public Board()
     {
@@ -29,7 +29,7 @@ public class Board
            gameBoard[i] = 0;
         }
     }
-    
+
     /**
      * To get player's chosen position and store into game board.
      * @param position the player's chosen position
@@ -39,7 +39,7 @@ public class Board
     {
         return gameBoard[position[0]];
     }
-    
+
     /**
      * To store which Human's chosen position and store into game board.
      * @param position the player's chosen position
@@ -49,7 +49,7 @@ public class Board
     {
        gameBoard[position] = HUMAN;
     }
-    
+
     /**
      * To store which Computer's chosen position and store into game board.
      * @param position the player's chosen position
@@ -62,14 +62,14 @@ public class Board
             gameBoard[position[0]] = COMPUTER;
         }
     }
-    
+
     /**
-     *  To check which player could win for each row 
+     *  To check which player could win for each row
      */
     public int CheckRow()
     {
     	int sum = 0;
-        
+
         //  Check 0-2
         for (int i = 0; i <(LENGTH / 3); i++)
         {
@@ -83,7 +83,7 @@ public class Board
         {
             return COMPUTER;
         }
-        
+
         sum = 0;
         // Check 3-5
         for (int i = 3; i <((LENGTH / 3) * 2); i++)
@@ -98,7 +98,7 @@ public class Board
         {
             return COMPUTER;
         }
-        
+
         sum = 0;
         // Check 6-8
         for (int i = 6; i <LENGTH; i++)
@@ -117,7 +117,7 @@ public class Board
     }
 
     /**
-     *  To check which player could win for each column 
+     *  To check which player could win for each column
      */
     public int CheckCol()
     {
@@ -129,7 +129,7 @@ public class Board
             sum += gameBoard[i];
             i += 3;
         }
-        
+
         if(sum == HUMANSUM)
         {
             return HUMAN;
@@ -138,7 +138,7 @@ public class Board
         {
             return COMPUTER;
         }
-        
+
         sum = 0;
         // Check 1, 4, 7
         i = 1;
@@ -147,7 +147,7 @@ public class Board
             sum += gameBoard[i];
             i += 3;
         }
-        
+
         if(sum == HUMANSUM)
         {
             return HUMAN;
@@ -156,7 +156,7 @@ public class Board
         {
             return COMPUTER;
         }
-        
+
         sum = 0;
         // Check 2, 5, 8
         i = 2;
@@ -165,7 +165,7 @@ public class Board
             sum += gameBoard[i];
             i += 3;
         }
-        
+
         if(sum == HUMANSUM)
         {
             return HUMAN;
@@ -178,7 +178,7 @@ public class Board
     }
 
     /**
-     *  To check which player could win for right to left diagonal 
+     *  To check which player could win for right to left diagonal
      */
     public int CheckRightToLeftDiagonal()
     {
@@ -200,9 +200,9 @@ public class Board
          }
         return NULL;
     }
-    
-    /** 
-     * To check which player could win for left to right diagonal 
+
+    /**
+     * To check which player could win for left to right diagonal
      */
     public int CheckLeftToRightDiagonal()
     {
@@ -213,7 +213,7 @@ public class Board
              RightToLeftDiagonal_sum += gameBoard[i];
              i += 4;
          }
-         
+
         if(RightToLeftDiagonal_sum == HUMANSUM)
         {
             return HUMAN;
@@ -224,9 +224,9 @@ public class Board
         }
         return NULL;
     }
-    
+
     /**
-     * To check which player is winner 
+     * To check which player is winner
      */
     public int Winner()
     {
@@ -250,9 +250,9 @@ public class Board
 
         return NULL;
     }
-    
+
     /**
-     * To check the game board is full by two players or not 
+     * To check the game board is full by two players or not
      * @return the game board is full or not
      */
     public boolean isFull()
@@ -266,7 +266,7 @@ public class Board
         }
         return true;
     }
-    
+
     /**
      * To Check have the winner or not
      * @return have the winner or not
